@@ -1,0 +1,14 @@
+{
+  "name": "vpibot",
+  "version": "1.0.0",
+  "description": "Virginia Tech Facts Bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "dag",
+  "license": "ISC",
+  "dependencies": {
+    "botkit": "^0.4.0"
+  }
+}
