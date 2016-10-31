@@ -1,19 +1,25 @@
 var Botkit = require('botkit');
 
+// json file of facts
+var parsedJSON = require('./vtfacts');
+
 var controller = Botkit.slackbot({
   debug: false
-  //include "log: false" to disable logging
-  //or a "logLevel" integer from 0 to 7 to adjust logging verbosity
+
 });
 
 // connect the bot to a stream of messages
-var bot = controller.spawn({
-  token:require('./config').token
-});
+controller.spawn({
+  token: "",
+}).startRTM()
+
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 // give the bot something to listen for.
-controller.hears('facts',['direct_message','direct_mention','mention'],function(bot,message) {
+controller.hears(['fact', 'tell me about tech', 'tell me about my school', 'something cool'],['direct_message','direct_mention','mention'],function(bot,message) {
 
-  bot.reply(message,'Virginia Tech was founded in 1872.');
+  bot.reply(message, parsedJSON.facts[getRandomInt(0, 30)].fact);
 
 });
